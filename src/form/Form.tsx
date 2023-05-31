@@ -1,16 +1,18 @@
-import { useState, FormEvent } from "react";
+import {useState, useRef, FormEvent} from "react";
 
 interface Props {
   submitValues: (username: string, age: string) => void;
 }
 
 const Form = (props: Props) => {
-  const [username, setUsername] = useState("");
-  const [age, setAge] = useState("");
+  const usernameValue = useRef<HTMLInputElement>(null!);
+  const ageValue = useRef<HTMLInputElement>(null!);
 
   const submitValuesHandler = (event: FormEvent) => {
     event.preventDefault();
-    props.submitValues(username, age);
+    props.submitValues(usernameValue.current.value, ageValue.current.value);
+    usernameValue.current.value = "";
+    ageValue.current.value = "";
   };
 
   return (
@@ -23,25 +25,17 @@ const Form = (props: Props) => {
           className="form-control"
           id="username"
           type="text"
-          value={username}
-          onChange={(event) => setUsername(event.target.value)}
+          ref={usernameValue}
         />
       </div>
       <div className="mb-3">
         <label className="form-label" htmlFor="age">
           Age
         </label>
-        <input
-          className="form-control"
-          id="age"
-          type="number"
-          value={age}
-          onChange={(event) => setAge(event.target.value)}
-        />
+        <input className="form-control" id="age" type="number" ref={ageValue} />
       </div>
       <button className="btn btn-primary" type="submit">
-        {" "}
-        Add User{" "}
+        Add User
       </button>
     </form>
   );

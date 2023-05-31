@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useState} from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
 import Card from "./UI/Card.tsx";
@@ -25,7 +25,7 @@ const App = () => {
           <div className={styles["alert-button"]}>
             <strong>
               Oops! Input value for username and age cannot be empty. Age must
-              be an integer and cannot be negative. Try again!{" "}
+              be an integer and cannot be negative. Try again!
             </strong>
             <button
               type="button"
