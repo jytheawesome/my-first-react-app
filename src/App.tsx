@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
-import Card from "./Card.tsx";
+import Card from "./UI/Card.tsx";
 import Form from "./form/Form.tsx";
 import styles from "./App.module.css";
 import Person from "./form/Person.tsx";

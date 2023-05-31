@@ -1,33 +1,49 @@
-import { useState } from "react";
-import Username from "./fields/Username.tsx";
-import Age from "./fields/Age.tsx";
-import SubmitButton from "./AddUserButton.tsx";
+import { useState, FormEvent } from "react";
 
 interface Props {
   submitValues: (username: string, age: string) => void;
 }
 
 const Form = (props: Props) => {
-  const [usernameValue, setUsername] = useState("");
-  const [ageValue, setAge] = useState("");
+  const [username, setUsername] = useState("");
+  const [age, setAge] = useState("");
 
-  const updateUsernameHandler = (username: string) => {
-    setUsername(username);
-  };
-  const updateAgeHandler = (age: string) => {
-    setAge(age);
-  };
-
-  const submitValuesHandler = () => {
-    props.submitValues(usernameValue, ageValue);
+  const submitValuesHandler = (event: FormEvent) => {
+    event.preventDefault();
+    props.submitValues(username, age);
   };
 
   return (
-    <>
-      <Username onUpdateUsername={updateUsernameHandler} />
-      <Age onUpdateAge={updateAgeHandler} />
-      <SubmitButton onSubmitValues={submitValuesHandler} />
-    </>
+    <form onSubmit={submitValuesHandler}>
+      <div className="mb-3">
+        <label className="form-label" htmlFor="username">
+          Username
+        </label>
+        <input
+          className="form-control"
+          id="username"
+          type="text"
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+        />
+      </div>
+      <div className="mb-3">
+        <label className="form-label" htmlFor="age">
+          Age
+        </label>
+        <input
+          className="form-control"
+          id="age"
+          type="number"
+          value={age}
+          onChange={(event) => setAge(event.target.value)}
+        />
+      </div>
+      <button className="btn btn-primary" type="submit">
+        {" "}
+        Add User{" "}
+      </button>
+    </form>
   );
 };
 
