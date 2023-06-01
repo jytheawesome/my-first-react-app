@@ -1,5 +1,6 @@
 import {useRef, useState, FormEvent} from "react";
-import Alert from "./Alert.tsx";
+import Card from "../UI/Card.tsx";
+import Alert from "../alert/Alert.tsx";
 import styles from "./Form.module.css";
 
 interface Props {
@@ -39,33 +40,35 @@ const Form = (props: Props) => {
       {showAlert && (
         <Alert alertText={alertMessage} onClick={() => setAlertState(false)} />
       )}
-      <form onSubmit={submitValuesHandler}>
-        <div className={styles["form-field"]}>
-          <label className={styles["form-label"]} htmlFor="username">
-            Username
-          </label>
-          <input
-            className={styles["form-input"]}
-            id="username"
-            type="text"
-            ref={usernameValue}
-          />
-        </div>
-        <div className={styles["form-field"]}>
-          <label className={styles["form-label"]} htmlFor="age">
-            Age
-          </label>
-          <input
-            className={styles["form-input"]}
-            id="age"
-            type="number"
-            ref={ageValue}
-          />
-        </div>
-        <button className="btn btn-primary" type="submit">
-          Add User
-        </button>
-      </form>
+      <Card>
+        <form onSubmit={submitValuesHandler}>
+          <div className={styles["form-field"]}>
+            <label className={styles["form-label"]} htmlFor="username">
+              Username
+            </label>
+            <input
+              className={styles["form-input"]}
+              id="username"
+              type="text"
+              ref={usernameValue}
+            />
+          </div>
+          <div className={styles["form-field"]}>
+            <label className={styles["form-label"]} htmlFor="age">
+              Age
+            </label>
+            <input
+              className={styles["form-input"]}
+              id="age"
+              type="number"
+              ref={ageValue}
+            />
+          </div>
+          <button className="btn btn-primary" type="submit">
+            Add User
+          </button>
+        </form>
+      </Card>
     </>
   );
 };
